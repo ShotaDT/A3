@@ -1,0 +1,86 @@
+1) Represent influence between users as a directional graph of users, save as a list of lines, as described next
+$ grep type=replied_to downloaded_tweets_extend_original_nolf2_NOBOT.tsv |awk -F '\t' '{print $6,$2}' | sort > a3_q1.txt
+
+
+2) Produce clusters (groups of influence) by ranking the users who got replies by their number of replies. Keep only the largest clusters by "cutting" at a threshold of 3; in order words, keep just the graph for users who got 3 or more replies
+
+$ grep type=replied_to downloaded_tweets_extend_original_nolf2_NOBOT.tsv | awk -F '\t' '{print $6,$4}' | sort | uniq -c | sort -r|awk '{ if ($1 >= 3) {print} }' > a3_q2.tsv
+
+4) Find the 30 most frequent hashtags in these largest clusters of replies you kept (for the users/tweets that got replied to, not the users/tweets doing the replies). Compare to the 30 most frequent hashtags you found in assignment #2 (overall, question 
+$ grep type=replied_to downloaded_tweets_extend_original_nolf2_NOBOT.tsv |awk -F '\t' '{print $4}' | sort | uniq -c |sort -nr | head -30
+
+     74 auspol
+     41 LongCovid
+     19 COVID19
+     18 AlboForPM
+     12 StandWithUkraine
+     10 IStandWithUkraine
+      8 JohnsonOut
+      8 COVIDisAirborne
+      8 Brexit
+      7 Ukraine
+      6 VoteFordOut2022
+      6 DemVoice1
+      6 "BCCRSS,LEGALNAMEFRAUD,ILOVETRUTH,IDsIllegal"
+      5 โอห์มฟลุ้คฟีเวอร์2021
+      5 VoteBlueToSaveAmerica
+      5 SaveWomensSports
+      5 RealityWinner
+      5 LongCovidKids
+      4 longcovid
+      4 ableg
+      4 StandWithUkriane
+      4 QandA
+      4 PrayerRoom
+      4 LNPCorruptionParty
+      4 GOP
+      4 CovidIsNotOver
+      4 Covid19
+      4 Covid
+      4 COVID
+      4 "auspol,ausvotes"
+
+
+
+5). Which hashtags appear in these clusters that did not appear in the frequent hashtags from assignment #2 (you can use sort and diff for this)?:
+I have got 30 hashtags used most frequently overall for anything below: 
+   1261 Ukraine
+    939 COVID19
+    869 LongCovid
+    833 "FBPE,FollowBackFriday"
+    318 Russia
+    305 BREAKING
+    257 PMQs
+    208 auspol
+    181 StandWithUkraine
+    177 AmiesMovieRating
+    175 Omicron
+    167 Mariupol
+    136 Kyiv
+    135 BA2
+    122 "Russia,Ukraine"
+    120 COVID
+    118 Bales2022FilmChallenge
+    110 Putin
+    107 ClimateCrisis
+    107 COVIDisAirborne
+    107 "PutinHitler,StandWithUkraine,PutinHitler,PutinWarCriminal,StopPutinNOW,RussiaSanctions,BoycottRussia"
+    106 BoycottATP
+    105 Russian
+     98 "cathrynhartt,harttandsoul,actor,actorslife"
+     97 Covid19
+     93 Partygate
+     87 TikTok
+     85 longcovid
+     78 Brexit
+     77 Ottawa
+ 
+It seems the hashtags that containing political issues have the more replies.
+
+
+
+
+
+
+
+
